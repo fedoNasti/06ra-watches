@@ -9,6 +9,10 @@ function WorldClock() {
     setClockListData(prev => [...prev, newClock]);
   }
 
+  const handleRemoveClock = (id) => {
+    setClockListData(prev => prev.filter(clock => clock.id !== id));
+  }
+
   useEffect(() => {
     console.log('Обновлённый список:', clockListData);
   }, [clockListData]);
@@ -21,6 +25,7 @@ function WorldClock() {
 
       <WorldClockList
         clocks={clockListData}
+        onRemoveClock={handleRemoveClock}
       />
     </>
   )
