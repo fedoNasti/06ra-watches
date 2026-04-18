@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { updateTime } from './utils.js';
+import { updateTime } from './utils.ts';
+import type { WorldClockItemProps } from "./types.ts";
 
-function WorldClockItem({ city, offset, id, onRemove }) {
+
+function WorldClockItem({ city, offset, id, onRemove }: WorldClockItemProps) {
   const [timeAngle, setTimeAngle] = useState({ seconds: 0, minutes: 0, hours: 0 })
   
-
   useEffect(() => {
     setTimeAngle(updateTime(offset));
 

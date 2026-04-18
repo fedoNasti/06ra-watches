@@ -1,21 +1,21 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
-import { validate } from './utils'
+import { validate } from './utils.ts';
+import type { FormData, FormErrors, Clock } from './types';
 
 
-function WorldClockForm({ onAddClock }) {
-  const [formData, setFormData] = useState({
+function WorldClockForm({ onAddClock }: { onAddClock: (clock: Clock) => void}) {
+  const [formData, setFormData] = useState<FormData>({
     city: '',
     offset: '',
-    //id: ''
   });
 
-  const [errors, setErrors] = useState({ 
+  const [errors, setErrors] = useState<FormErrors>({ 
     city: '', 
     offset: '' 
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
     setFormData(prevState => ({
@@ -24,7 +24,7 @@ function WorldClockForm({ onAddClock }) {
     }));
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const validationErrors = validate(formData);
@@ -46,26 +46,33 @@ function WorldClockForm({ onAddClock }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="city">Название</label>
-      <input 
-      id="city" 
-      name="city" 
-      type="text"
-      value={formData.city} 
-      onChange={handleChange} />
-      {errors.city && <span style={{ color: 'red' }}>{errors.city}</span>}
+    <form className="clock-form" onSubmit={handleSubmit}>
+      <div className="clock-form__container">
+        <label className="clock-form__title" htmlFor="city">Название</label>
+        <input 
+        className="clock-form__input"
+        id="city" 
+        name="city" 
+        type="text"
+        value={formData.city} 
+        onChange={handleChange} />
+        {errors.city && <span className="clock-form__error">{errors.city}</span>}
+      </div>
+      
 
-      <label htmlFor="offset">Временная зона</label>
-      <input 
-      id="offset" 
-      name="offset" 
-      type="number"
-      value={formData.offset} 
-      onChange={handleChange} />
-      {errors.offset && <span style={{ color: 'red' }}>{errors.offset}</span>}
-
-      <button type="submit">Добавить</button>
+      <div className="clock-form__container">
+        <label className="clock-form__title" htmlFor="offset">Временная зона</label>
+        <input 
+        className="clock-form__input"
+        id="offset" 
+        name="offset" 
+        type="number"
+        value={formData.offset} 
+        onChange={handleChange} />
+        {errors.offset && <span className="clock-form__error">{errors.offset}</span>}
+      </div>
+      
+      <button className="clock-form__btn" type="submit">Добавить</button>
     </form>
   );
 }

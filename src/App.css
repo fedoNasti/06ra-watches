@@ -1,19 +1,78 @@
+#root {
+  padding: 10px;
+}
+
+.clock-form {
+  display: flex;
+  justify-content: center;
+  background: #fff;
+  border-radius: 20px;
+  padding: 12px 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.clock-form__container {
+  position: relative;
+}
+
+.clock-form__title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2f3640;
+  min-width: 100px;
+  margin: 0 20px;
+}
+
+.clock-form__input {
+  border: 2px solid black;
+  border-radius: 6px;
+}
+
+.clock-form__btn {
+  margin-left: 15px;
+  font-weight: 600;
+  background: white;
+  border: 2px solid black;
+  border-radius: 6px;
+}
+
+.clock-form__btn:hover {
+  background: rgb(198, 198, 198);
+  transform: scale(1.05);
+}
+
+.clock-form__error {
+  position: absolute;
+  top: 26px;
+  right: 0;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #d32f2f;
+  background-color: #ffebee;
+  border: 1px solid #ffcdd2;
+  border-radius: 4px;
+}
+
 .clock-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 16px;
   list-style: none;
   padding: 0;
 }
 
-/* Общий контейнер элемента списка */
 .clock-item {
+  position: relative;
   display: flex;
+  flex-direction: column;
+  gap: 5px;
   align-items: center;
   justify-content: space-between;
   background: #fff;
   border-radius: 20px;
-  padding: 12px 20px;
+  padding: 30px;
   margin-bottom: 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
@@ -24,15 +83,17 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Кнопка удаления */
 .clock-btn {
-  background: #ff4757;
-  color: white;
-  border: none;
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: white;
+  color: darkgray;
+  border: 1px solid gray;
   border-radius: 50%;
-  width: 28px;
-  height: 28px;
-  font-size: 16px;
+  width: 25px;
+  height: 25px;
+  font-size: 14px;
   font-weight: bold;
   cursor: pointer;
   transition: background 0.2s, transform 0.1s;
@@ -42,7 +103,7 @@
 }
 
 .clock-btn:hover {
-  background: #e84118;
+  background: rgb(198, 198, 198);
   transform: scale(1.05);
 }
 
@@ -50,7 +111,6 @@
   transform: scale(0.95);
 }
 
-/* Название города */
 .clock-title {
   font-size: 1.2rem;
   font-weight: 600;
@@ -59,7 +119,6 @@
   margin: 0 20px;
 }
 
-/* Контейнер аналоговых часов */
 .clock {
   position: relative;
   width: 80px;
@@ -71,7 +130,6 @@
   margin: 0 10px;
 }
 
-/* Общие стили стрелок */
 .hand {
   position: absolute;
   bottom: 50%;
@@ -82,7 +140,6 @@
   transition: transform 0.1s linear;
 }
 
-/* Часовая стрелка */
 .hour-hand {
   width: 5px;
   height: 25px;
@@ -90,7 +147,6 @@
   transform: translateX(-50%) rotate(0deg);
 }
 
-/* Минутная стрелка */
 .minute-hand {
   width: 3px;
   height: 35px;
@@ -98,29 +154,13 @@
   transform: translateX(-50%) rotate(0deg);
 }
 
-/* Секундная стрелка */
 .second-hand {
   width: 1.5px;
   height: 40px;
-  background: #ff4757;
+  background: darkgray;
   transform: translateX(-50%) rotate(0deg);
 }
 
-/* Центральная точка (опционально) */
-.clock::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 6px;
-  height: 6px;
-  background: #ff4757;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-}
-
-/* Адаптив для мобильных */
 @media (max-width: 600px) {
   .clock-item {
     flex-wrap: wrap;

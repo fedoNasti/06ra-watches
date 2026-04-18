@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
 import WorldClockForm from "./WorldClockForm";
 import WorldClockList from "./WorldClockList";
+import type { Clock } from "./types";
 
 function WorldClock() {
-  const [clockListData, setClockListData] = useState([]);
+  const [clockListData, setClockListData] = useState<Clock[]>([]);
 
-  const handleAddClock = (newClock) => {
+  const handleAddClock = (newClock: Clock) => {
     setClockListData(prev => [...prev, newClock]);
   }
 
-  const handleRemoveClock = (id) => {
+  const handleRemoveClock = (id: string) => {
     setClockListData(prev => prev.filter(clock => clock.id !== id));
   }
 

@@ -1,6 +1,7 @@
 import WorldClockItem from "./WorldClockItem";
+import type { WorldClockListProps } from "./types";
 
-function WorldClockList({ clocks, onRemoveClock }) {
+function WorldClockList({ clocks, onRemoveClock }: WorldClockListProps) {
 
   return (
     <ul className="clock-list">
